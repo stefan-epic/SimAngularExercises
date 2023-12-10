@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <!-- Person Avatar with Image -->
+    <div [ngStyle]="{'background-image': 'url(' + p.imagelink + ')'}" mat-card-avatar class="person-header-image"></div>
+    <mat-card-title>{{p.name}}</mat-card-title>
+    <mat-card-subtitle>{{p.address.postcodetown + ', ' + p.address.streetnumber}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content fxLayout="row wrap">
+
+     <!-- Display Image on Larger Screens -->
+    <div fxHide.lt-md="true">
+      <img mat-card-image src="{{p.imagelink}}" alt="{{'Picture of ' + p.name}}" class="person-card" >
+    </div>
+
+    <div fxFlex style="margin-left: 16px;">
+      <p>
+        {{'Geboren am ' + p.birthdate.toLocaleDateString('en-GB').replaceAll('/', '.') + ' derzeit im ' + p.ageInYears + ' Lebensjahr'}}
+      </p>
+      <div fxLayout="row wrap" style="margin-bottom: 16px;">
+        <div style="margin-right: 20px;">
+          <ua-email-list [_addresses]="p.emailaddresses"></ua-email-list>
+        </div>
+
+        <div>
+          <ua-car-list [_cars]="p.cars"></ua-car-list>
+        </div>
+      </div>
+
+
+    </div>
+  </mat-card-content>
+</mat-card>

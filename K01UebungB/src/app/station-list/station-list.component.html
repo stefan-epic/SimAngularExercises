@@ -1,0 +1,41 @@
+<div class="weather-stations-container">
+  <h1 class="weather-stations-title"> <strong>Wetter Stationen im Tal</strong> </h1>
+
+  
+  <!-- container for searchbar to filter stations by name -->
+  <div class="filter-container" fxLayout="row" fxLayoutAlign="start center"> 
+    <mat-form-field fxFlex>
+      <mat-label>Stationsname</mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput (input)="applyFilter($event)" placeholder="Filter by name" />
+      <mat-hint>{{filteredStationAmount + ' Stationen gefunden'}}</mat-hint>
+    </mat-form-field>
+  </div>
+
+   <!-- List of weather stations (hidden on screens greater than xs) -->
+  <mat-list fxHide.gt-xs role="list" *ngFor="let element of filteredStations.filteredData" matSort>
+    <mat-list-item class="list-item">
+      <h2> <strong> {{ element.name  + ' (' + element.altitude + ' m)'}} </strong> </h2>
+      <ua-station-item [station]="element"></ua-station-item>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+
+  <!-- Table of weather stations (hidden on screens with size xs) -->
+  <div fxLayout="row">
+    <table mat-table fxHide.xs [dataSource]="filteredStations" class="mat-elevation-z8" matSort>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <h2> <strong> {{ element.name  + ' (' + element.altitude + ' m)'}} </strong> </h2>
+          <p> {{'Zuletzt aktualisiert: ' + element.lastUpdated.toLocaleString('en-GB').replaceAll('/', '.') +' Uhr, Längengrad ' + element.longitude + ', Breitengrad ' + element.latitude}} </p>
+          <ua-station-item [station]="element"></ua-station-item>
+        </td>
+      </ng-container>
+
+       <!--Header row and Data row for the name column -->
+      <tr mat-header-row *matHeaderRowDef="['name']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name'];"></tr>
+    </table>
+  </div>
+</div>

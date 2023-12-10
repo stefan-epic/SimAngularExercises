@@ -1,0 +1,21 @@
+.weather-stations-container {
+  margin: 20px;
+
+  .weather-stations-title {
+    margin-bottom: 20px;
+  }
+
+  .filter-container {
+    margin-bottom: 20px;
+  }
+
+  .list-item {
+    height: 100%;
+  }
+
+  table.mat-elevation-z8 {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

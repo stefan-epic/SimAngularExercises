@@ -1,0 +1,12 @@
+<h2>Email-Adressen</h2>
+<mat-list *ngIf="_addresses.length !== 0">
+  <mat-list-item *ngFor="let address of addresses" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+      <mat-icon mat-list-icon>email</mat-icon>
+      <a href="mailto:{{ address }}">{{ address }}</a>
+    </div>
+  </mat-list-item>
+</mat-list>
+<div *ngIf="_addresses.length === 0">
+  <p>Keine Emails festgelegt</p>
+</div>

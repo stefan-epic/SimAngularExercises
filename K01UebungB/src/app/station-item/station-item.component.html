@@ -1,0 +1,13 @@
+<!-- only render if not null-->
+
+<div *ngIf="MappedMeasurments && station" fxLayout="column" >
+    <!-- Iterate over MappedMeasurements with conditional formatting based on screensize -->
+  <div *ngFor="let url of MappedMeasurments" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxLayout.xs="column">
+    <p><strong>{{url.key}}</strong></p>
+    <p>{{url.value}}</p>
+  </div>
+
+  <div *ngFor="let measurment of station.measurements">
+    <ua-measurement-item [url]="measurment.imageUrl"></ua-measurement-item>
+  </div>
+</div>

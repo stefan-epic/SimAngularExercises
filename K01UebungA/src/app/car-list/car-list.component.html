@@ -1,0 +1,28 @@
+<div>
+  <h2>Autos</h2>
+  <div *ngIf="_cars.length != 0">
+    <!-- Searchbar for filtering cars based on user input -->
+    <mat-form-field>
+      <mat-label>Immatrikulationsjahr setzen</mat-label>
+      <input matInput placeholder="" [formControl]="filterYear">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-list>
+      <!-- displaying all of the cars using ngFor loop -->
+      <mat-list-item *ngFor="let car of cars" fxLayout="row" fxLayoutAlign="start center">
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="{{ car.imagelink }}" alt="Car Image">
+            <mat-card-title>{{car.description}}</mat-card-title>
+            <mat-card-subtitle>{{car.licenseplate + ', ' + car.registrationyear}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div *ngIf="cars.length == 0">
+    <p>Keine Autos festgelegt</p>
+  </div>
+</div>

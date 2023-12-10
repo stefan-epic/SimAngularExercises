@@ -1,0 +1,12 @@
+<div *ngIf="persons && persons.length > 0">
+  <ul style="list-style-type: none;">
+    <li *ngFor="let person of persons">
+      <ua-person-item [person]="person"></ua-person-item>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!persons || persons.length === 0">
+  <h1>Personenliste</h1>
+  <p>Keine Personen festgelegt</p>
+</div>
